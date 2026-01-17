@@ -1,88 +1,91 @@
--- [[ KIRA HUB - TITANIUM EDITION ]]
--- SECURITY: GOOGLE CLOUD KEY SYSTEM
--- VERSION: 1.0.2
+-- [[ STRICTLY PRIVATE - ENCRYPTED V7 ]]
+-- [[ PROJECT: SPEED BOOSTER (THE ANNIHILATOR) ]]
+-- [[ STATUS: FORCED POTATO MODE ]]
 
-local SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-fLoXMan1Dl-5ZlTvx5Wp1Hpk6O1HbhSQKgryuvbbABghlyW_af52pad8ygXsiAGByA/exec"
+local _0xR = game:GetService("RunService")
+local _0xP = game.Players.LocalPlayer
+local _0xG = _0xP:WaitForChild("PlayerGui")
 
--- FPS Booster Logic
-local function ActivateFPSBooster()
-    print("Titanium System: FPS Booster Activated!")
+-- 1. INTRO UI (SMALL YELLOW RECTANGLE)
+local function _0xINTRO_FINAL()
+    if _0xG:FindFirstChild("FinalLoading") then _0xG.FinalLoading:Destroy() end
+    local gui = Instance.new("ScreenGui", _0xG); gui.Name = "FinalLoading"
+    local frame = Instance.new("Frame", gui)
+    frame.Size = UDim2.new(0, 260, 0, 130); frame.Position = UDim2.new(0.5, -130, 0.5, -65)
+    frame.BackgroundColor3 = Color3.new(0,0,0); frame.BorderSizePixel = 3; frame.BorderColor3 = Color3.new(1, 1, 0)
+    
+    local t = Instance.new("TextLabel", frame)
+    t.Size = UDim2.new(1, 0, 0.6, 0); t.BackgroundTransparency = 1; t.Text = "SPEED BOOSTER"; t.TextColor3 = Color3.new(1, 1, 0); t.TextSize = 25; t.Font = Enum.Font.LuckiestGuy
+    
+    local barBg = Instance.new("Frame", frame); barBg.Size = UDim2.new(0.8, 0, 0.1, 0); barBg.Position = UDim2.new(0.1, 0, 0.7, 0); barBg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    local bar = Instance.new("Frame", barBg); bar.Size = UDim2.new(0, 0, 1, 0); bar.BackgroundColor3 = Color3.new(1, 1, 0)
+    
+    for i = 0, 1, 0.2 do 
+        bar:TweenSize(UDim2.new(i, 0, 1, 0), "Out", "Linear", 0.08, true)
+        task.wait(0.1) 
+    end
+    task.wait(0.4); gui:Destroy()
+end
+
+-- 2. FPS COUNTER (TRANSPARENT BLACK)
+local function _0xSTATS()
+    if _0xG:FindFirstChild("UniversalFPS") then _0xG.UniversalFPS:Destroy() end
+    local sg = Instance.new("ScreenGui", _0xG); sg.Name = "UniversalFPS"; sg.ResetOnSpawn = false
+    local l = Instance.new("TextLabel", sg)
+    l.Size = UDim2.new(0, 150, 0, 30); l.Position = UDim2.new(0, 55, 0, 10); l.BackgroundTransparency = 1; l.TextColor3 = Color3.new(0, 0, 0); l.TextSize = 22; l.Font = Enum.Font.Code; l.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local f = 0; local t = tick()
+    _0xR.RenderStepped:Connect(function() 
+        f = f + 1 
+        if tick() - t >= 1 then 
+            l.Text = "FPS: " .. f; f = 0; t = tick() 
+        end 
+    end)
+end
+
+-- 3. THE "DESTRUCTOR" (OPTIMIZING PERFORMANCE)
+local function _0xFORCE_DESTRUCTION()
+    -- Force legacy lighting and low quality settings
+    pcall(function()
+        sethiddenproperty(game:GetService("Lighting"), "Technology", Enum.Technology.Compatibility)
+    end)
     
     settings().Rendering.QualityLevel = 1
+    game:GetService("MaterialService").Use2022Materials = false
+    
+    local lit = game:GetService("Lighting")
+    lit.GlobalShadows = false
+    lit.Brightness = 0
+    
     for _, v in pairs(game:GetDescendants()) do
         if v:IsA("BasePart") then
             v.Material = Enum.Material.Plastic
             v.CastShadow = false
-        elseif v:IsA("Decal") or v:IsA("Texture") then
+            v.Reflectance = 0
+            if v:IsA("MeshPart") then
+                v.TextureId = ""
+                v.RenderFidelity = Enum.RenderFidelity.Performance
+            end
+        elseif v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("SurfaceAppearance") then
+            v:Destroy()
+        elseif v:IsA("SpecialMesh") then
             v:Destroy()
         end
     end
-    
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "TITANIUM HUB",
-        Text = "System Optimized Successfully!",
-        Duration = 5
-    })
+
+    -- Clear water reflections and effects
+    local ter = workspace:FindFirstChildOfClass("Terrain")
+    if ter then
+        ter.WaterWaveSize = 0; ter.WaterWaveSpeed = 0; ter.WaterReflectance = 0; ter.WaterTransparency = 1
+    end
 end
 
--- Authentication UI
-local function CreateLoginUI()
-    local sg = Instance.new("ScreenGui", game:GetService("CoreGui"))
-    sg.Name = "KiraAuthSystem"
-    
-    local main = Instance.new("Frame", sg)
-    main.Size = UDim2.new(0, 300, 0, 160)
-    main.Position = UDim2.new(0.5, -150, 0.5, -80)
-    main.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    main.BorderSizePixel = 2
-    main.BorderColor3 = Color3.new(1, 1, 0)
-    
-    local title = Instance.new("TextLabel", main)
-    title.Size = UDim2.new(1, 0, 0, 40)
-    title.Text = "TITANIUM KEY SYSTEM"
-    title.TextColor3 = Color3.new(1, 1, 0)
-    title.TextSize = 18
-    title.Font = Enum.Font.GothamBold
-    title.BackgroundTransparency = 1
-    
-    local input = Instance.new("TextBox", main)
-    input.Size = UDim2.new(0.8, 0, 0, 35)
-    input.Position = UDim2.new(0.1, 0, 0.35, 0)
-    input.PlaceholderText = "Enter Key..."
-    input.Text = ""
-    input.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    input.TextColor3 = Color3.new(1, 1, 1)
-    
-    local btn = Instance.new("TextButton", main)
-    btn.Size = UDim2.new(0.8, 0, 0, 40)
-    btn.Position = UDim2.new(0.1, 0, 0.7, 0)
-    btn.Text = "VERIFY LOGIN"
-    btn.BackgroundColor3 = Color3.new(1, 1, 0)
-    btn.Font = Enum.Font.GothamBold
-    btn.TextColor3 = Color3.new(0, 0, 0)
-    
-    btn.MouseButton1Click:Connect(function()
-        btn.Text = "CHECKING..."
-        local key = input.Text
-        
-        local success, result = pcall(function()
-            return game:HttpGet(SCRIPT_URL .. "?key=" .. key)
-        end)
-        
-        if success and result == "Success" then
-            btn.Text = "ACCESS GRANTED"
-            btn.BackgroundColor3 = Color3.new(0, 1, 0)
-            task.wait(1)
-            sg:Destroy()
-            ActivateFPSBooster()
-        else
-            btn.Text = "INVALID KEY"
-            btn.BackgroundColor3 = Color3.new(1, 0, 0)
-            task.wait(2)
-            btn.Text = "VERIFY LOGIN"
-            btn.BackgroundColor3 = Color3.new(1, 1, 0)
-        end
-    end)
-end
-
-CreateLoginUI()
+-- EXECUTION
+task.spawn(_0xINTRO_FINAL)
+task.spawn(_0xSTATS)
+task.spawn(function()
+    while true do
+        _0xFORCE_DESTRUCTION()
+        task.wait(0.5) -- Continuous performance check
+    end
+end)
