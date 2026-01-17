@@ -1,12 +1,14 @@
--- [[ STRICTLY PRIVATE - ENCRYPTED V7 ]]
--- [[ PROJECT: SPEED BOOSTER (THE ANNIHILATOR) ]]
--- [[ STATUS: FORCED POTATO MODE ]]
+-- [[ 
+    STRICTLY PRIVATE - ENCRYPTED V7
+    PROJECT: SPEED BOOSTER (THE ANNIHILATOR)
+    STATUS: FORCED POTATO MODE
+]]
 
 local _0xR = game:GetService("RunService")
 local _0xP = game.Players.LocalPlayer
 local _0xG = _0xP:WaitForChild("PlayerGui")
 
--- 1. INTRO UI
+-- 1. INTRO UI (SMALL YELLOW RECTANGLE)
 local function _0xINTRO_FINAL()
     if _0xG:FindFirstChild("FinalLoading") then _0xG.FinalLoading:Destroy() end
     local gui = Instance.new("ScreenGui", _0xG); gui.Name = "FinalLoading"
@@ -21,7 +23,7 @@ local function _0xINTRO_FINAL()
     task.wait(0.4); gui:Destroy()
 end
 
--- 2. FPS COUNTER
+-- 2. FPS COUNTER (TRANSPARENT BLACK)
 local function _0xSTATS()
     if _0xG:FindFirstChild("UniversalFPS") then _0xG.UniversalFPS:Destroy() end
     local sg = Instance.new("ScreenGui", _0xG); sg.Name = "UniversalFPS"; sg.ResetOnSpawn = false
@@ -31,11 +33,9 @@ local function _0xSTATS()
     _0xR.RenderStepped:Connect(function() f = f + 1 if tick() - t >= 1 then l.Text = "FPS: " .. f; f = 0; t = tick() end end)
 end
 
--- 3. THE DESTRUCTOR
+-- 3. THE "DESTRUCTOR" (KILLING QUALITY FOR REAL)
 local function _0xFORCE_DESTRUCTION()
-    pcall(function()
-        sethiddenproperty(game:GetService("Lighting"), "Technology", Enum.Technology.Compatibility)
-    end)
+    sethiddenproperty(game:GetService("Lighting"), "Technology", Enum.Technology.Compatibility) 
     settings().Rendering.QualityLevel = 1
     
     game:GetService("MaterialService").Use2022Materials = false
@@ -46,17 +46,17 @@ local function _0xFORCE_DESTRUCTION()
     
     for _, v in pairs(game:GetDescendants()) do
         if v:IsA("BasePart") then
-            v.Material = Enum.Material.Plastic
+            v.Material = Enum.Material.Plastic 
             v.CastShadow = false
             v.Reflectance = 0
             if v:IsA("MeshPart") then
-                v.TextureId = ""
+                v.TextureId = "" 
                 v.RenderFidelity = Enum.RenderFidelity.Performance
             end
         elseif v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("SurfaceAppearance") then
-            v:Destroy()
+            v:Destroy() 
         elseif v:IsA("SpecialMesh") then
-            v:Destroy()
+            v:Destroy() 
         end
     end
 
@@ -66,12 +66,11 @@ local function _0xFORCE_DESTRUCTION()
     end
 end
 
--- START SCRIPT
 task.spawn(_0xINTRO_FINAL)
 task.spawn(_0xSTATS)
 task.spawn(function()
     while true do
         _0xFORCE_DESTRUCTION()
-        task.wait(0.5)
+        task.wait(0.5) 
     end
 end)
